@@ -10,7 +10,7 @@ joblib==1.2.0
 jsonpickle==3.0.1
 jsonschema==4.3.3
 lightgbm==3.3.5
-matplotlib==3.7.1
+matplotlib==3.5.3
 matplotlib-inline==0.1.6
 missingno==0.5.2
 mlxtend==0.14.0
