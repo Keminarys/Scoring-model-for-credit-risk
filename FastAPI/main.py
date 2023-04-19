@@ -27,9 +27,9 @@ async def predict(applicant_id : int):
    for pred, ID in zip(predictions, list_ID):
       if ID == applicant_id:
          predict_proba.append(pred[1])
-           if predict_proba[0] >= threshold :
-               result_message = f'Applicant with ID : {ID}, based on the model, is capable of repaying the loan'
-           else : result_message = f'Applicant with ID : {ID}, based on the model, is not capable of repaying the loan'
+         if predict_proba[0] >= threshold :
+                result_message = f'Applicant with ID : {ID}, based on the model, is capable of repaying the loan'
+         else : result_message = f'Applicant with ID : {ID}, based on the model, is not capable of repaying the loan'
     return predict_proba[0], result_message
 
 @app.get('/ID_explainer/{applicant_id}')
