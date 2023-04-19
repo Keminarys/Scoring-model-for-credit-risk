@@ -30,7 +30,7 @@ async def predict(applicant_id : int):
          if predict_proba[0] >= threshold :
                 result_message = f'Applicant with ID : {ID}, based on the model, is capable of repaying the loan'
          else : result_message = f'Applicant with ID : {ID}, based on the model, is not capable of repaying the loan'
-    return predict_proba[0], result_message
+   return predict_proba[0], result_message
 
 @app.get('/ID_explainer/{applicant_id}')
 async def ID_explainer(applicant_id : int):
@@ -40,7 +40,7 @@ async def ID_explainer(applicant_id : int):
             index_ID.append(ind)
             shap_values_id = shap_values_data[index_ID][0]
             json_shap_id = json.dumps(shap_values_id.tolist())
-    return {'shap_id':json_shap_id}
+   return {'shap_id':json_shap_id}
 
 @app.get('/model_explainer')
 async def model_explainer():
