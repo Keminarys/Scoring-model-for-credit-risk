@@ -11,8 +11,12 @@ app = FastAPI()
 
 #Data 
 lgbm = joblib.load('LGBM_Thresh_04785.sav')
-data = joblib.load('data_api.pkl')
-shap_values = joblib.load('shap_values_data.pkl')
+#data = joblib.load('data_api.pkl')
+with open('data_api.pkl', 'rb') as f:
+      data = pd.read_pickle(f)
+#shap_values = joblib.load('shap_values_data.pkl')
+with open('shap_values_data.pkl', 'rb') as f:
+      shap_values = pd.read_pickle(f)
 list_ID = data.index.tolist()
 
 #Function
