@@ -28,6 +28,7 @@ def get():
 async def predict(applicant_id : int):
    predictions = lgbm.predict_proba(data).tolist()
    predict_proba = []
+   threshold = 0.4785  
    for pred, ID in zip(predictions, list_ID):
       if ID == applicant_id:
          predict_proba.append(pred[1])
