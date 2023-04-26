@@ -28,7 +28,7 @@ async def all_applicants():
 @app.get("/data_id/{applicant_id}")
 async def data_id(applicant_id : int):
     data_applicant = data[data.index == applicant_id]
-    data_applicant = data_applicant.to_dict('index')
+    data_applicant = data_applicant.to_json()
     return data_applicant
     
 @app.get("/predict/{applicant_id}")
