@@ -25,6 +25,12 @@ async def home():
 async def all_applicants():
       return list_ID
 
+@app.get("/data_id/{applicant_id}")
+async def data_id(applicant_id : int):
+    data_applicant = data[applicant_id]
+    data_applicant = data_applicant.to_dict('index')
+    return data_applicant
+    
 @app.get("/predict/{applicant_id}")
 async def predict(applicant_id : int):
    predictions = lgbm.predict_proba(data).tolist()
