@@ -70,7 +70,7 @@ with st.container():
   st.subheader("SHAP Global Interpretability")
   if choice_glob == 'Yes' :
     global_interpretability = shap.summary_plot(shap_graph)
-    st.pyplot(global_interpretability, width = 1000, height = 1000)
+    st.pyplot(global_interpretability, width = 500, height = 500)
 
 st.divider()
 
@@ -79,7 +79,7 @@ with st.container():
   if choice_loc == 'Yes' :
     ind_shap = list_ID.index(applicant_selected)
     local_interpretability = shap.plots.waterfall(shap_graph[ind_shap])
-    st.pyplot(local_interpretability, width = 1000, height = 1000)
+    st.pyplot(local_interpretability, width = 500, height = 500)
 
 st.divider()
 
