@@ -16,11 +16,12 @@ expected_value = -0.457
 #explainer = joblib.load("https://github.com/Keminarys/Scoring-model-for-credit-risk/blob/main/FastAPI/explainer_lgbm.pkl")
 #shap_global = joblib.load("https://github.com/Keminarys/Scoring-model-for-credit-risk/blob/main/FastAPI/shap_values_global.pkl")
 #shap_graph = joblib.load("https://github.com/Keminarys/Scoring-model-for-credit-risk/blob/main/FastAPI/shap_values_graphs.pkl")
-list_ID  = re.get(API_id).to_list()
+list_ID  = re.get(API_id)
 
 #App design
 st.set_page_config(layout="wide")
 st.title('Home Credit Risk Application : Does the applicant is capable of repaying a requested loan ?')  
 with st.sidebar : 
   st.write("ID SELECTION")
+  st.write(type(list_ID))
   st.selectbox("Choose an applicant ID in the dropdown list below", list_ID)
