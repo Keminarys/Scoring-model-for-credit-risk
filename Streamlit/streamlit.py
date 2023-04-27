@@ -38,7 +38,9 @@ with st.sidebar :
   choice_glob = st.radio("Would you like to see global model interpretability graph ?", ask)
   choice_loc = st.radio("Would you like to see local model interpretability graph ?", ask)
   st.divider()
-  col_plot = st.write("2-Dimensional Plots from SHAP")
+  st.write("2-Dimensional Plots from SHAP")
+  choice_2d = st.radio("Would you like plot 2D graphs?", ask)
+  if choice_2d == 'Yes' : col_plot = st.multiselect('Pick 2 columns', data_applicant.columns,['CODE_GENDER', 'EXT_SOURCE_2'])
   st.divider()
   choice_df = st.radio("Would you like to see dataframe ?", ask)
 
@@ -70,7 +72,7 @@ st.divider()
 with st.container():
   st.subheader("SHAP Global Interpretability")
   if choice_glob == 'Yes' :
-    global_interpretability = shap.summary_plot(shap_graph, plot_size=[7,5], show=False)
+    global_interpretability = shap.summary_plot(shap_graph, plot_size=[5,7], show=False)
     st.pyplot(global_interpretability, use_container_width = False)
 
 st.divider()
@@ -90,3 +92,8 @@ with st.container():
     st.dataframe(data_applicant, width=1000)
   
 st.divider()
+
+with st.container():
+  st.subheader("2D plots")
+  if choice_2d == 'Yes' :
+    st.write("ok")
