@@ -23,6 +23,8 @@ ask = ["No","Yes"]
 #App design
 st.set_page_config(layout="wide")
 st.title('Home Credit Risk Application : Does the applicant is capable of repaying a requested loan ?')  
+st.divider()
+
 with st.sidebar : 
   st.divider()
   st.write("ID SELECTION")
@@ -41,13 +43,28 @@ json_applicant = json.loads(json_applicant)
 data_applicant =  pd.DataFrame.from_records(json_applicant, index=[str(applicant_selected)])
 pred_applicant = re.get(API_pred+str(applicant_selected)).json()
 
+gauge = go.Figure(go.Indicator(
+    domain = {'x': [0, 1], 'y': [0, 1]},
+    value = pred_applicant[0],
+    mode = "gauge+number+delta",
+    title = {'text': "Loan can be repaid ?"},
+    delta = {'reference': threshold},
+    gauge = {'axis': {'range': [0, 1]},
+             'steps' : [
+                 {'range': [0, threshold], 'color': "red"},
+                 {'range': [threshold, 1], 'color': "green"}],
+             'threshold' : {'line': {'color': "black", 'width': 4}, 'thickness': 0.75, 'value': threshold}}))
+
 with st.container():
   st.subheader("Result of the prediction")
-  st.write(pred_applicant[0])
+  st.plotly_chart(gauge)
   st.write(pred_applicant[1])
+
+st.divider()
 
 with st.container():
   if choice_df == 'Yes' :
     st.subheader("Data of the applicant")
-    st.dataframe(data_applicant, use_container_width=True)
+    st.dataframe(data_applicant, width=1000)
   
+st.divider()
