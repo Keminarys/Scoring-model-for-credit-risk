@@ -50,6 +50,7 @@ gauge = go.Figure(go.Indicator(
     title = {'text': "Loan can be repaid ?"},
     delta = {'reference': threshold},
     gauge = {'axis': {'range': [0, 1]},
+             'bar': {'color': "lightgray"},
              'steps' : [
                  {'range': [0, threshold], 'color': "red"},
                  {'range': [threshold, 1], 'color': "green"}],
