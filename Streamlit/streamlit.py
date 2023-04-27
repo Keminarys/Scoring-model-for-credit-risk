@@ -3,6 +3,7 @@ import numpy as np
 import shap
 import json
 import joblib
+import matplotlib
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
