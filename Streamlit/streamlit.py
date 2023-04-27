@@ -9,10 +9,7 @@ import plotly.graph_objects as go
 import streamlit as st
 import requests as re
 
-### Thanks to Andfanilo from this topic https://discuss.streamlit.io/t/display-shap-diagrams-with-streamlit/1029/9
-def st_shap(plot, height=None):
-    shap_html = f"<head>{shap.getjs()}</head><body>{plot.html()}</body>"
-    components.html(shap_html, height=height)
+st.set_option('deprecation.showPyplotGlobalUse', False)
 
 #Fixed Variable
 API_id = "https://apprenticeship-credit-risk.onrender.com/all_applicants/"
@@ -73,16 +70,16 @@ with st.container():
   st.subheader("SHAP Global Interpretability")
   if choice_glob == 'Yes' :
     global_interpretability = shap.summary_plot(shap_graph)
-    st.pyplot(global_interpretability)
+    st.pyplot(global_interpretability, width = 1000, height = 1000)
 
 st.divider()
 
 with st.container():
   st.subheader("SHAP Local Interpretability")
-  if choice_glob == 'Yes' :
+  if choice_loc == 'Yes' :
     ind_shap = list_ID.index(applicant_selected)
     local_interpretability = shap.plots.waterfall(shap_graph[ind_shap])
-    st.pyplot(local_interpretability)
+    st.pyplot(local_interpretability, width = 1000, height = 1000)
 
 st.divider()
 
