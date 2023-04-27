@@ -3,3 +3,6 @@ This is a project I had to do during my apprenticeship, it's based on a kaggle c
 
 The purpose is to create a dashboard based on a scoring model.
 To build this we have to create a model, deploy it using MLflow and test it with Pytest or Unitest
+
+
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://keminarys-scoring-model-for-credit-ri-streamlitstreamlit-jpz3z3.streamlit.app/)
