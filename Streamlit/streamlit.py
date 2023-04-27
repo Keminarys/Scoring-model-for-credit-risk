@@ -71,8 +71,17 @@ st.divider()
 with st.container():
   st.subheader("SHAP Global Interpretability")
   if choice_glob == 'Yes' :
-    global_interpretability = shap.summary_plot(shap_values)
+    global_interpretability = shap.summary_plot(shap_graph)
     st.pyplot(global_interpretability)
+
+st.divider()
+
+with st.container():
+  st.subheader("SHAP Local Interpretability")
+  if choice_glob == 'Yes' :
+    ind_shap = list_ID.index(applicant_selected)
+    local_interpretability = shap.plots.waterfall(shap_graph[ind_shap])
+    st.pyplot(local_interpretability)
 
 st.divider()
 
