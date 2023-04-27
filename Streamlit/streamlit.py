@@ -17,8 +17,7 @@ expected_value = -0.457
 #shap_global = joblib.load("https://github.com/Keminarys/Scoring-model-for-credit-risk/blob/main/FastAPI/shap_values_global.pkl")
 #shap_graph = joblib.load("https://github.com/Keminarys/Scoring-model-for-credit-risk/blob/main/FastAPI/shap_values_graphs.pkl")
 list_ID  = re.get(API_id).json()
-global_int = ["No","Yes"]
-local_int = ["No","Yes"]
+ask = ["No","Yes"]
 
 #App design
 st.set_page_config(layout="wide")
@@ -29,10 +28,17 @@ with st.sidebar :
   applicant_selected = st.selectbox("Choose an applicant ID in the dropdown list below", list_ID)
   st.divider()
   st.write("MODEL INTERPRETABILITY")
-  st.radio("Would you like to see global model interpretability graph ?", global_int)
-  st.radio("Would you like to see local model interpretability graph ?", local_int)
+  choice_glob = st.radio("Would you like to see global model interpretability graph ?", ask)
+  choice_loc = st.radio("Would you like to see local model interpretability graph ?", ask)
   st.divider()
-  st.write("2-Dimensional Plots from SHAP")
-  
+  col_plot = st.write("2-Dimensional Plots from SHAP")
+  st.divider()
+  choice_df = st.radio("Would you like to see dataframe ?", ask)
+
 data_applicant = re.get(API_data+str(applicant_selected)).json()
 pred_applicant = re.get(API_pred+str(applicant_selected)).json()
+
+with st.container():
+  if choice_df == 'Yes' :
+    st.dataframe(data_applicant)
+  
