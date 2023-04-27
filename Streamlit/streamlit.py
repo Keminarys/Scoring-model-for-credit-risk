@@ -13,6 +13,7 @@ API_id = "https://apprenticeship-credit-risk.onrender.com/all_applicants/"
 API_pred = "https://apprenticeship-credit-risk.onrender.com/predict/"
 API_data = "https://apprenticeship-credit-risk.onrender.com/data_id/"
 expected_value = -0.457
+threshold = 0.4785
 #explainer = joblib.load("https://github.com/Keminarys/Scoring-model-for-credit-risk/blob/main/FastAPI/explainer_lgbm.pkl")
 #shap_global = joblib.load("https://github.com/Keminarys/Scoring-model-for-credit-risk/blob/main/FastAPI/shap_values_global.pkl")
 #shap_graph = joblib.load("https://github.com/Keminarys/Scoring-model-for-credit-risk/blob/main/FastAPI/shap_values_graphs.pkl")
@@ -41,11 +42,12 @@ data_applicant =  pd.DataFrame.from_records(json_applicant, index=[str(applicant
 pred_applicant = re.get(API_pred+str(applicant_selected)).json()
 
 with st.container():
-  st.write("Result of the prediction")
-  st.write(pred_applicant)
+  st.subheader("Result of the prediction")
+  st.write(pred_applicant[0])
+  st.write(pred_applicant[1])
 
 with st.container():
   if choice_df == 'Yes' :
-    st.write("Data of the applicant")
-    st.dataframe(data_applicant)
+    st.subheader("Data of the applicant")
+    st.dataframe(data_applicant, use_container_width=True)
   
