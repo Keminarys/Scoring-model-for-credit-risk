@@ -40,7 +40,8 @@ with st.sidebar :
   st.divider()
   st.write("2-Dimensional Plots from SHAP")
   choice_2d = st.radio("Would you like plot 2D graphs?", ask)
-  if choice_2d == 'Yes' : col_plot = st.multiselect('Pick 2 columns', data_applicant.columns,['CODE_GENDER', 'EXT_SOURCE_2'])
+  if choice_2d == 'Yes' : 
+     col_plot = st.multiselect('Pick 2 columns', data_applicant.columns, ['CODE_GENDER', 'EXT_SOURCE_2'])
   st.divider()
   choice_df = st.radio("Would you like to see dataframe ?", ask)
 
@@ -96,4 +97,4 @@ st.divider()
 with st.container():
   st.subheader("2D plots")
   if choice_2d == 'Yes' :
-    st.write("ok")
+    st.write(f'{col_plot[0]} & {col_plot[1]} have been selected')
