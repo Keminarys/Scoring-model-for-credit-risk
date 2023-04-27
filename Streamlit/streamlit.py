@@ -71,8 +71,10 @@ st.divider()
 with st.container():
   st.subheader("SHAP Global Interpretability")
   if choice_glob == 'Yes' :
-    global_interpretability = shap.force_plot(explainer.expected_value[0], shap_global[0], feature_names=data_applicant.columns, matplotlib=True,show=False)
-    st_shap(global_interpretability)
+    global_interpretability = shap.summary_plot(shap_values)
+    st.pyplot(global_interpretability)
+
+st.divider()
 
 with st.container():
   st.subheader("Data of the applicant")
