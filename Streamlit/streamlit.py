@@ -13,9 +13,9 @@ API_id = "https://apprenticeship-credit-risk.onrender.com/all_applicants/"
 API_pred = "https://apprenticeship-credit-risk.onrender.com/predict/"
 API_data = "https://apprenticeship-credit-risk.onrender.com/data_id/"
 expected_value = -0.457
-explainer = joblib.load("https://github.com/Keminarys/Scoring-model-for-credit-risk/blob/main/FastAPI/explainer_lgbm.pkl")
-shap_global = joblib.load("https://github.com/Keminarys/Scoring-model-for-credit-risk/blob/main/FastAPI/shap_values_global.pkl")
-shap_graph = joblib.load("https://github.com/Keminarys/Scoring-model-for-credit-risk/blob/main/FastAPI/shap_values_graphs.pkl")
+#explainer = joblib.load("https://github.com/Keminarys/Scoring-model-for-credit-risk/blob/main/FastAPI/explainer_lgbm.pkl")
+#shap_global = joblib.load("https://github.com/Keminarys/Scoring-model-for-credit-risk/blob/main/FastAPI/shap_values_global.pkl")
+#shap_graph = joblib.load("https://github.com/Keminarys/Scoring-model-for-credit-risk/blob/main/FastAPI/shap_values_graphs.pkl")
 list_id  = re.get(API_id)
 
 #App design
