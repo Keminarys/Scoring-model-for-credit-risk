@@ -37,10 +37,15 @@ with st.sidebar :
 
 json_applicant = re.get(API_data+str(applicant_selected)).json()
 json_applicant = json.loads(json_applicant)
-data_applicant =  pd.DataFrame.from_records(json_applicant, index=[applicant_selected])
+data_applicant =  pd.DataFrame.from_records(json_applicant, index=[str(applicant_selected)])
 pred_applicant = re.get(API_pred+str(applicant_selected)).json()
 
 with st.container():
+  st.write("Result of the prediction")
+  st.write(pred_applicant)
+
+with st.container():
   if choice_df == 'Yes' :
+    st.write("Data of the applicant")
     st.dataframe(data_applicant)
   
