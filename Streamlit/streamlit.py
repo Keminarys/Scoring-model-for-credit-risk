@@ -29,6 +29,7 @@ st.title('Home Credit Risk Application : Does the applicant is capable of repayi
 st.divider()
 
 with st.sidebar : 
+  st.header("Parameters Selection")
   st.divider()
   st.write("ID SELECTION")
   applicant_selected = st.selectbox("Choose an applicant ID in the dropdown list below", list_ID)
@@ -70,7 +71,7 @@ with st.container():
   st.subheader("SHAP Global Interpretability")
   if choice_glob == 'Yes' :
     global_interpretability = shap.summary_plot(shap_graph, plot_size=[7,5], show=False)
-    st.pyplot(global_interpretability)
+    st.pyplot(global_interpretability, use_container_width = False)
 
 st.divider()
 
@@ -79,7 +80,7 @@ with st.container():
   if choice_loc == 'Yes' :
     ind_shap = list_ID.index(applicant_selected)
     local_interpretability = shap.plots.waterfall(shap_graph[ind_shap], show=False)
-    st.pyplot(local_interpretability)
+    st.pyplot(local_interpretability, use_container_width = False)
 
 st.divider()
 
