@@ -97,5 +97,5 @@ with st.container():
   if choice_2d == 'Yes' : 
     col_plot = st.multiselect('Pick 2 columns', data_applicant.columns, ['CODE_GENDER', 'EXT_SOURCE_2'])
     st.write(f'{col_plot[0]} & {col_plot[1]} have been selected')
-    dependence = shap.dependence_plot(col_plot[0], shap_graph, interaction_index=col_plot[1], show=False)
-    st.pyplot(dependence, use_container_width = False)
+    dep_plot = shap.plots.scatter(shap_graph[:, str(col_plot[0])], color=shap_graph[:,str(col_plot[1])])
+    st.pyplot(dep_plot, use_container_width = False)
