@@ -35,7 +35,7 @@ with st.sidebar :
   st.divider()
   choice_df = st.radio("Would you like to see dataframe ?", ask)
 
-data_applicant = re.get(API_data+str(applicant_selected)).json()
+data_applicant = pd.json_normalize(re.get(API_data+str(applicant_selected)).json())
 pred_applicant = re.get(API_pred+str(applicant_selected)).json()
 
 with st.container():
