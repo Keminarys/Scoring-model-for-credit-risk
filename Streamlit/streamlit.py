@@ -14,9 +14,9 @@ API_pred = "https://apprenticeship-credit-risk.onrender.com/predict/"
 API_data = "https://apprenticeship-credit-risk.onrender.com/data_id/"
 expected_value = -0.457
 threshold = 0.4785
-explainer = joblib.load(open('/FastAPI/explainer_lgbm.pkl', 'rb'))
-shap_global = joblib.load(open('/FastAPI/shap_values_global.pkl', 'rb'))
-shap_graph = joblib.load(open('/FastAPI/shap_values_graphs.pkl', 'rb'))
+explainer = joblib.load(open('/app/scoring-model-for-credit-risk/FastAPI/explainer_lgbm.pkl', 'rb'))
+shap_global = joblib.load(open('/app/scoring-model-for-credit-risk/FastAPI/shap_values_global.pkl', 'rb'))
+shap_graph = joblib.load(open('/app/scoring-model-for-credit-risk/FastAPI/shap_values_graphs.pkl', 'rb'))
 list_ID  = re.get(API_id).json()
 ask = ["No","Yes"]
 
