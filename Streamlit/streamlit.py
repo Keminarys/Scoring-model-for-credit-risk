@@ -36,10 +36,10 @@ with st.sidebar :
   choice_df = st.radio("Would you like to see dataframe ?", ask)
 
 json_applicant = re.get(API_data+str(applicant_selected)).json()
-data_applicant =  pd.DataFrame.from_dict(json_applicant, orient='index')
+#data_applicant =  pd.DataFrame.from_dict(json_applicant, orient='index')
 pred_applicant = re.get(API_pred+str(applicant_selected)).json()
 
 with st.container():
   if choice_df == 'Yes' :
-    st.dataframe(data_applicant)
+    st.write(json_applicant)
   
