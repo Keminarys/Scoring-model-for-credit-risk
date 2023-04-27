@@ -17,15 +17,22 @@ expected_value = -0.457
 #shap_global = joblib.load("https://github.com/Keminarys/Scoring-model-for-credit-risk/blob/main/FastAPI/shap_values_global.pkl")
 #shap_graph = joblib.load("https://github.com/Keminarys/Scoring-model-for-credit-risk/blob/main/FastAPI/shap_values_graphs.pkl")
 list_ID  = re.get(API_id).json()
-global_int = ["Yes","No"]
-local_int = ["Yes","No"]
+global_int = ["No","Yes"]
+local_int = ["No","Yes"]
 
 #App design
 st.set_page_config(layout="wide")
 st.title('Home Credit Risk Application : Does the applicant is capable of repaying a requested loan ?')  
 with st.sidebar : 
+  st.divider()
   st.write("ID SELECTION")
-  st.selectbox("Choose an applicant ID in the dropdown list below", list_ID)
+  applicant_selected = st.selectbox("Choose an applicant ID in the dropdown list below", list_ID)
+  st.divider()
   st.write("MODEL INTERPRETABILITY")
   st.radio("Would you like to see global model interpretability graph ?", global_int)
   st.radio("Would you like to see local model interpretability graph ?", local_int)
+  st.divider()
+  st.write("2-Dimensional Plots from SHAP")
+  
+data_applicant = re.get(API_data+str(applicant_selected)).json()
+pred_applicant = re.get(API_pred+str(applicant_selected)).json()
