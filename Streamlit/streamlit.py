@@ -41,5 +41,5 @@ pred_applicant = re.get(API_pred+str(applicant_selected)).json()
 
 with st.container():
   if choice_df == 'Yes' :
-    st.write(json_applicant)
+    st.write(type(json_applicant))
   
