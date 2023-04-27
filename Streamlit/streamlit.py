@@ -22,5 +22,5 @@ list_id  = re.get(API_id)
 st.set_page_config(layout="wide")
 st.title('Home Credit Risk Application : Does the applicant is capable of repaying a requested loan ?')  
 with st.sidebar : 
-  st.write("Choose an applicant ID in the dropdown list below")
-  st.selectbox((list_ID))
+  st.write("ID SELECTION")
+  st.selectbox("Choose an applicant ID in the dropdown list below", list_ID)
