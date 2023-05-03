@@ -18,7 +18,6 @@ API_data = "https://apprenticeship-credit-risk.onrender.com/data_id/"
 expected_value = -0.457
 threshold = 0.4785
 explainer = joblib.load(open('/app/scoring-model-for-credit-risk/FastAPI/explainer_lgbm.pkl', 'rb'))
-shap_global = joblib.load(open('/app/scoring-model-for-credit-risk/FastAPI/shap_values_global.pkl', 'rb'))
 shap_graph = joblib.load(open('/app/scoring-model-for-credit-risk/FastAPI/shap_values_graphs.pkl', 'rb'))
 list_ID  = re.get(API_id).json()
 ask = ["No","Yes"]
@@ -82,13 +81,6 @@ with st.container():
     ind_shap = list_ID.index(applicant_selected)
     local_interpretability = shap.plots.waterfall(shap_graph[ind_shap], show=False)
     st.pyplot(local_interpretability, use_container_width = False)
-
-st.divider()
-
-with st.container():
-  st.subheader("Data of the applicant")
-  if choice_df == 'Yes' :
-    st.dataframe(data_applicant, width=1000)
   
 st.divider()
 
@@ -99,3 +91,10 @@ with st.container():
     st.write(f'{col_plot[0]} & {col_plot[1]} have been selected')
     dep_plot = shap.plots.scatter(shap_graph[:, str(col_plot[0])], color=shap_graph[:,str(col_plot[1])])
     st.pyplot(dep_plot, use_container_width = False)
+
+st.divider()
+
+with st.container():
+  st.subheader("Data of the applicant")
+  if choice_df == 'Yes' :
+    st.dataframe(data_applicant, width=1000)
