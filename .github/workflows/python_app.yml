@@ -27,12 +27,10 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
-    - name: Wait for Render Deployment
-        uses: bounceapp/render-action@0.6.0
-        with:
-          service-id: secrets.RENDER_API
-          retries: 3
-          wait: 16000
-          sleep: 30000
-    
-
+    - name: Render GitHub Action
+      uses: Bounceapp/render-action@0.6.0
+      with:
+        service-id: secrets.RENDER_API
+        retries: 3
+        wait: 16000
+        sleep: 30000
