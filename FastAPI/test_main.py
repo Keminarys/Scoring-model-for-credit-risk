@@ -5,7 +5,7 @@ import joblib
 import pandas as pd
 import json
 
-data = joblib.load('/data_api.pkl')
+data = joblib.load('data_api.pkl')
 list_ID = data.index.tolist()
 
 def test_get_home_message():
