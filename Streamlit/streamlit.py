@@ -19,6 +19,7 @@ expected_value = -0.457
 threshold = 0.4785
 explainer = joblib.load(open('/app/scoring-model-for-credit-risk/FastAPI/explainer_lgbm.pkl', 'rb'))
 shap_graph = joblib.load(open('/app/scoring-model-for-credit-risk/FastAPI/shap_values_graphs.pkl', 'rb'))
+shap_global = joblib.load(open('/app/scoring-model-for-credit-risk/FastAPI/shap_values_global.pkl', 'rb'))
 list_ID  = re.get(API_id).json()
 ask = ["No","Yes"]
 
@@ -89,7 +90,7 @@ with st.container():
   if choice_2d == 'Yes' : 
     col_plot = st.multiselect('Pick 2 columns', data_applicant.columns, ['CODE_GENDER', 'EXT_SOURCE_2'])
     st.write(f'{col_plot[0]} & {col_plot[1]} have been selected')
-    dep_plot = shap.plots.scatter(shap_graph[:, str(col_plot[0])], color=shap_graph[:,str(col_plot[1])])
+    dep_plot = shap.plots.scatter(shap_global[:, str(col_plot[0])], color=shap_global[:,str(col_plot[1])])
     st.pyplot(dep_plot, use_container_width = False)
 
 st.divider()
