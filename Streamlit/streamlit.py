@@ -12,16 +12,20 @@ import requests as re
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 #Fixed Variable
-API_id = "https://apprenticeship-credit-risk.onrender.com/all_applicants/"
-API_pred = "https://apprenticeship-credit-risk.onrender.com/predict/"
-API_data = "https://apprenticeship-credit-risk.onrender.com/data_id/"
-expected_value = -0.457
-threshold = 0.4785
-explainer = joblib.load(open('/app/scoring-model-for-credit-risk/FastAPI/explainer_lgbm.pkl', 'rb'))
-shap_graph = joblib.load(open('/app/scoring-model-for-credit-risk/FastAPI/shap_values_graphs.pkl', 'rb'))
-shap_global = joblib.load(open('/app/scoring-model-for-credit-risk/FastAPI/shap_values_global.pkl', 'rb'))
-list_ID  = re.get(API_id).json()
-ask = ["No","Yes"]
+@st.cache_data
+def load_fixed_data() :
+  API_id = "https://apprenticeship-credit-risk.onrender.com/all_applicants/"
+  API_pred = "https://apprenticeship-credit-risk.onrender.com/predict/"
+  API_data = "https://apprenticeship-credit-risk.onrender.com/data_id/"
+  expected_value = -0.457
+  threshold = 0.4785
+  explainer = joblib.load(open('/app/scoring-model-for-credit-risk/FastAPI/explainer_lgbm.pkl', 'rb'))
+  shap_graph = joblib.load(open('/app/scoring-model-for-credit-risk/FastAPI/shap_values_graphs.pkl', 'rb'))
+  list_ID  = re.get(API_id).json()
+  ask = ["No","Yes"]
+  return API_id, API_pred, API_data, expected_value, threshold, explainer, shap_graph, list_ID, ask
+
+API_id, API_pred, API_data, expected_value, threshold, explainer, shap_graph, list_ID, ask = load_fixed_data()
 
 #App design
 st.set_page_config(layout="wide")
