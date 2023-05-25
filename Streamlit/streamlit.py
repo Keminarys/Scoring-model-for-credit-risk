@@ -10,6 +10,7 @@ import streamlit as st
 import requests as re
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
+st.set_page_config(layout="wide")
 
 #Fixed Variable
 @st.cache_data
@@ -28,7 +29,7 @@ def load_fixed_data() :
 API_id, API_pred, API_data, expected_value, threshold, explainer, shap_graph, list_ID, ask = load_fixed_data()
 
 #App design
-st.set_page_config(layout="wide")
+
 st.title('Home Credit Risk Application : Does the applicant is capable of repaying a requested loan ?')  
 st.divider()
 
