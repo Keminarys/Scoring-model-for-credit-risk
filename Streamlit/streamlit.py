@@ -28,6 +28,15 @@ def load_fixed_data() :
 
 API_id, API_pred, API_data, expected_value, threshold, explainer, shap_graph, list_ID, ask = load_fixed_data()
 
+@st.cache_data
+def load_applicant_data(applicant_selected) :
+  json_applicant = re.get(API_data+str(applicant_selected)).json()
+  json_applicant = json.loads(json_applicant)
+  data_applicant =  pd.DataFrame.from_records(json_applicant, index=[str(applicant_selected)])
+  pred_applicant = re.get(API_pred+str(applicant_selected)).json()
+  return json_applicant, data_applicant, pred_applicant
+json_applicant, data_applicant, pred_applicant = load_applicant_data(applicant_selected)
+
 #App design
 
 st.title('Home Credit Risk Application : Does the applicant is capable of repaying a requested loan ?')  
@@ -48,10 +57,7 @@ with st.sidebar :
   st.divider()
   choice_df = st.radio("Would you like to see dataframe ?", ask)
 
-json_applicant = re.get(API_data+str(applicant_selected)).json()
-json_applicant = json.loads(json_applicant)
-data_applicant =  pd.DataFrame.from_records(json_applicant, index=[str(applicant_selected)])
-pred_applicant = re.get(API_pred+str(applicant_selected)).json()
+
 
 gauge = go.Figure(go.Indicator(
     domain = {'x': [0, 1], 'y': [0, 1]},
